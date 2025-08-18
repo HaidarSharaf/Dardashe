@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
+#[Title('Login')]
 class Login extends Component
 {
     #[Validate('required|string|email')]
@@ -23,7 +25,6 @@ class Login extends Component
 
     public function login(): void
     {
-        sleep(2);
         $this->validate();
 
         $this->ensureIsNotRateLimited();
@@ -39,7 +40,16 @@ class Login extends Component
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();
 
-        $this->redirectIntended(default: route('home', absolute: false), navigate: true);
+        $user = Auth::user();
+
+        if($user->role === 'admin') {
+            $this->redirect(route('admin.dashboard'), navigate: true);
+        } elseif ($user->email_verified_at === null) {
+            $this->redirect(route('verify-email'), navigate: true);
+        } else{
+            $this->redirectIntended(default: route('home', absolute: false), navigate: true);
+        }
+
     }
 
     protected function ensureIsNotRateLimited(): void

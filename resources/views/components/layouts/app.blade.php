@@ -14,7 +14,7 @@
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-200  text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col" x-data x-on:click="$dispatch('search:clear-text')">
+<body class="bg-blue-500  text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col" x-data x-on:click="$dispatch('search:clear-text')">
 
 <header class="w-full lg:max-w-6xl md:max-w-3xl sm:max-w-[600px] max-w-[450px] text-sm mb-2 not-has-[nav]:hidden">
 

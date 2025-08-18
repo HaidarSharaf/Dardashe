@@ -6,8 +6,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
+#[Title('Update Password')]
 class UpdatePassword extends Component
 {
     public string $current_password = '';
@@ -32,9 +34,20 @@ class UpdatePassword extends Component
         ]);
 
         $this->reset('current_password', 'password', 'password_confirmation');
+
+        if(Auth::user()->role === 'admin') {
+            $this->redirect(route('admin.dashboard'), navigate: true);
+        } else {
+            $this->redirect(route('home'), navigate: true);
+        }
     }
     public function render()
     {
-        return view('livewire.auth.update-password');
+        $layout = auth()->user()?->role === 'admin'
+            ? 'components.layouts.admin'
+            : 'components.layouts.app';
+
+        return view('livewire.auth.update-password')
+            ->layout($layout);
     }
 }
