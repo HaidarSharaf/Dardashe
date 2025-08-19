@@ -36,19 +36,17 @@
 
             <div class="flex flex-wrap items-center sm:justify-between justify-center gap-4">
                 <div class="flex items-center">
-                    <input
-                        wire:model="remember"
-                        type="checkbox"
-                        class="md:h-5 md:w-5 w-4 h-4 accent-[#19468f] border-slate-300 rounded focus:ring-2 focus:ring-[#19468f] focus:outline-none"
-                    >
-                    <label for="remember-me" class="md:ml-3 ml-1 block font-semibold md:text-base sm:text-sm text-xs text-white">
-                        Remember me
+
+                    <label class="inline-flex items-center cursor-pointer">
+                        <input wire:model="remember" type="checkbox" value="" class="sr-only peer">
+                        <div class="relative w-11 h-6 bg-white peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-500 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-400 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        <span class="ms-3 md:text-base sm:text-sm text-xs font-semibold text-white">Remember Me</span>
                     </label>
                 </div>
                 <a
                     wire:navigate
                     href="{{ route('forgot-password') }}"
-                    class="md:text-base sm:text-sm text-xs font-semibold text-white hover:text-[#19468f] hover:underline"
+                    class="md:text-base sm:text-sm text-xs font-semibold text-white hover:text-blue-500 hover:underline"
                 >
                     Forgot your password?
                 </a>
@@ -60,7 +58,7 @@
                     wire:loading.attr="disabled"
                     wire:loading.class="pointer-events-none"
                     wire:target="login"
-                    class="w-full bg-[#1750b6] hover:bg-lime-600 transition text-white md:text-base text-sm font-semibold cursor-pointer py-3 px-6 rounded-xl shadow-lg !mt-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                    class="w-full bg-[#1750b6] hover:bg-blue-800 transition text-white md:text-base text-sm font-semibold cursor-pointer py-3 px-6 rounded-xl shadow-lg !mt-3 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     Log In
                 </button>
@@ -69,7 +67,7 @@
             <div class="mt-4 flex justify-center">
                 <p class="text-sm text-white">
                     Don't have an account?
-                    <a wire:navigate href="{{ route('register') }}" class="text-[#19468f] hover:underline">Register here.</a>
+                    <a wire:navigate href="{{ route('register') }}" class="text-blue-500 hover:underline">Register here.</a>
                 </p>
             </div>
         </form>

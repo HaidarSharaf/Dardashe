@@ -6,7 +6,7 @@
 
         <form wire:submit.prevent="register">
 
-        
+
             <div class="space-y-6">
 
                 <div>
@@ -54,12 +54,12 @@
                     />
                 </div>
 
-                <div class="w-full">
+                <div>
                     <button
                         type="submit"
                         wire:loading.attr="disabled"
                         wire:loading.class="pointer-events-none"
-                        class="bg-[#1750b6] hover:bg-lime-600 transition text-white md:text-base text-sm font-semibold cursor-pointer py-3 px-8 rounded-xl shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                        class="w-full bg-[#1750b6] hover:bg-blue-800 transition text-white md:text-base text-sm font-semibold cursor-pointer py-3 px-8 rounded-xl shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                         <span wire:loading.remove>Create Account</span>
                         <span wire:loading>Creating...</span>
@@ -76,7 +76,7 @@
                 <a
                     wire:navigate
                     href="{{ route('login') }}"
-                    class="text-[#19468f] hover:underline"
+                    class="text-blue-500 hover:underline"
                 >
                     Log in here.
                 </a>

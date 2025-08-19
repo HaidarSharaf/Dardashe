@@ -7,9 +7,11 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
-class Register extends Component
+#[Title('Register - Dardashe')]
+class Register extends AuthComponent
 {
 
     public string $name = '';

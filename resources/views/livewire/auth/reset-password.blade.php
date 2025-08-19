@@ -15,7 +15,7 @@
                 />
                 <div>
                     @error('email')
-                    <span class="text-[#FF4D30] text-sm">{{ $message }}</span>
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
@@ -49,7 +49,7 @@
                     wire:loading.attr="disabled"
                     wire:loading.class="pointer-events-none"
                     wire:target="resetPassword"
-                    class="w-full bg-[#1750b6] hover:bg-lime-600 transition text-white md:text-base text-sm font-semibold cursor-pointer py-3 px-6 rounded-xl shadow-lg !mt-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                    class="w-full bg-[#1750b6] hover:bg-blue-800 transition text-white md:text-base text-sm font-semibold cursor-pointer py-3 px-6 rounded-xl shadow-lg !mt-3 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     Reset Password
                 </button>

@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Password;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-#[Title('Forgot Password')]
-class ForgotPassword extends Component
+#[Title('Forgot Password - Dardashe')]
+class ForgotPassword extends AuthComponent
 {
     public string $email = '';
     public bool $sent = false;

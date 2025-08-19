@@ -12,8 +12,8 @@ use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
-#[Title('Login')]
-class Login extends Component
+#[Title('Login - Dardashe')]
+class Login extends AuthComponent
 {
     #[Validate('required|string|email')]
     public string $email = '';

@@ -11,8 +11,8 @@ use Livewire\Attributes\Locked;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-#[Title('Reset Password')]
-class ResetPassword extends Component
+#[Title('Reset Password - Dardashe')]
+class ResetPassword extends AuthComponent
 {
     #[Locked]
     public string $token = '';

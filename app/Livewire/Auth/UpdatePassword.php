@@ -9,8 +9,8 @@ use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-#[Title('Update Password')]
-class UpdatePassword extends Component
+#[Title('Update Password - Dardashe')]
+class UpdatePassword extends AuthComponent
 {
     public string $current_password = '';
     public string $password = '';

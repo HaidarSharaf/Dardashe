@@ -11,8 +11,8 @@ use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
-#[Title('Verify Email')]
-class VerifyEmail extends Component
+#[Title('Verify Email - Dardashe')]
+class VerifyEmail extends AuthComponent
 {
     #[Validate('required|digits:6|numeric')]
     public $otp = '';
