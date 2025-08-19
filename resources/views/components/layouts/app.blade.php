@@ -14,9 +14,35 @@
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gradient-to-br p-0 m-0 from-gray-700 via-gray-400 to-blue-900 flex items-center lg:justify-center min-h-screen flex-col">
+<body
+    class="bg-gradient-to-br p-0 m-0 from-gray-700 via-gray-400 to-blue-900 flex items-center lg:justify-center min-h-screen flex-col"
+    x-data="{ loading: true }"
+    x-init="
+        if (!window.alreadyLoaded) {
+            window.alreadyLoaded = true;
+            const start = Date.now();
+            window.addEventListener('load', () => {
+                const elapsed = Date.now() - start;
+                const remaining = 2000 - elapsed;
+                setTimeout(() => loading = false, remaining > 0 ? remaining : 0);
+            });
+        } else {
+            loading = false;
+        }
+    "
+>
 
 <div
+    x-show="loading"
+    x-transition.opacity.duration.500ms
+    class="fixed inset-0 z-50 flex items-center justify-center"
+>
+    <img src="{{ asset('/images/dardashe.png') }}" class="h-16 w-auto animate-pulse" alt="Loading...">
+</div>
+
+<div
+    x-show="!loading"
+    x-transition.opacity.duration.500ms
     class="flex items-start justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0"
 >
     <main

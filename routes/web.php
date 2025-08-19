@@ -1,11 +1,13 @@
 <?php
 
+use App\Livewire\AddFriends;
 use App\Livewire\Auth\ForgotPassword;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
 use App\Livewire\Auth\ResetPassword;
 use App\Livewire\Auth\UpdatePassword;
 use App\Livewire\Auth\VerifyEmail;
+use App\Livewire\Friends;
 use App\Livewire\Home;
 use Illuminate\Support\Facades\Route;
 
@@ -26,3 +28,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::get('/', Home::class)->name('home');
+
+Route::get('/add-friends', AddFriends::class)->name('add-friends');
+
+Route::get('/friends', Friends::class)->name('friends');
+
+

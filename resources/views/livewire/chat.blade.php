@@ -70,10 +70,12 @@
                 </svg>
             </button>
             <div class="flex-1 relative">
-                <input type="text" placeholder="Type a message..."
-                       class="w-full px-4 py-3 bg-gray-100 rounded-full border-0 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-white transition-all">
+                <input
+                    type="text" placeholder="Type a message..."
+                    class="w-full px-4 py-3 bg-gray-100 rounded-full border-0 focus:outline-none focus:ring-2 focus:ring-sky-600 focus:bg-white transition-all"
+                >
             </div>
-            <button class="bg-sky-500 hover:bg-sky-600 text-white p-3 rounded-full transition-colors shadow-lg">
+            <button class="bg-sky-600 hover:bg-sky-700 text-white p-3 rounded-full transition-colors shadow-lg">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
                 </svg>
