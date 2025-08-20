@@ -9,6 +9,7 @@ use App\Livewire\Auth\UpdatePassword;
 use App\Livewire\Auth\VerifyEmail;
 use App\Livewire\Friends;
 use App\Livewire\Home;
+use App\Livewire\Profile;
 use Illuminate\Support\Facades\Route;
 
 
@@ -32,5 +33,7 @@ Route::get('/', Home::class)->name('home');
 Route::get('/add-friends', AddFriends::class)->name('add-friends');
 
 Route::get('/friends', Friends::class)->name('friends');
+
+Route::get('/profile', Profile::class)->name('profile');
 
 
