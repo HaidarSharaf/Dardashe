@@ -19,6 +19,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'display_name',
+        'avatar',
         'email',
         'password',
         'otp_code',
@@ -56,4 +58,46 @@ class User extends Authenticatable
     {
         $this->notify(new PasswordReset($token));
     }
+
+
+    public function sentMessages()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    public function receivedMessages()
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
+    }
+
+    public function groupMessages()
+    {
+        return $this->hasMany(GroupMessage::class, 'user_id');
+    }
+
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class, 'group_members');
+    }
+
+    public function friendships()
+    {
+        return $this->hasMany(Friendship::class);
+    }
+
+    public function friends()
+    {
+        return Friendship::where('user1_id', $this->id)
+            ->orWhere('user2_id', $this->id);
+    }
+
+    public function friendsList()
+    {
+        $friendships = $this->friends()->where('status', 'accepted')->get();
+
+        return $friendships->map(function ($friendship) {
+            return $friendship->user1_id === $this->id ? $friendship->user2 : $friendship->user1;
+        });
+    }
+
 }

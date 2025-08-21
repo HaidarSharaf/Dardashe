@@ -26,9 +26,9 @@ Route::middleware(['auth'])->group(function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/update-password', UpdatePassword::class)->name('update-password');
+    Route::get('/', Home::class)->name('home');
 });
 
-Route::get('/', Home::class)->name('home');
 
 Route::get('/add-friends', AddFriends::class)->name('add-friends');
 

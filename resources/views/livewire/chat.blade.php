@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div class="flex-1 overflow-y-auto p-6 space-y-4 bg-gradient-to-b from-gray-50 to-gray-100">
+    <div class="flex-1 overflow-y-auto p-6 space-y-4 bg-white">
         <!-- Date Separator -->
         <x-date :date="'Today'"/>
 

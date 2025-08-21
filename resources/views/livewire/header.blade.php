@@ -35,7 +35,7 @@
             class="rounded-2xl focus-visible:outline-2 cursor-pointer"
         >
             <img
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face&auto=format"
+                src="{{ asset('storage/users_avatars/' . $user->avatar) }}"
                 class="lg:size-12 md:size-11 size-9 rounded-full object-cover"
             >
         </a>

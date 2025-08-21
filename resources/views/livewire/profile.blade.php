@@ -9,20 +9,39 @@
         <div class="overflow-hidden">
             <div class="flex flex-col items-center">
                 <div class="relative mb-4">
-                    <input type="file" id="profilePicture" accept="image/*" class="hidden">
+                    <input wire:model="avatar" type="file" id="profilePicture" accept="image/*" class="hidden">
                     <label for="profilePicture" class="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-gray-50 transition-colors">
-                        <svg class="w-12 h-12 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-                        </svg>
+                        @if($avatar)
+                            <img
+                                src="{{ $avatar->temporaryUrl() }}"
+                                class="rounded-full shadow-xl"
+                            >
+                        @else
+                            <img
+                                src="{{ asset('storage/users_avatars/' . $user->avatar) }}"
+                                 class="rounded-full shadow-xl"
+                            >
+                        @endif
                     </label>
                 </div>
-                <h2 class="text-xl font-semibold text-white">John Doe</h2>
+                <h2 class="text-xl font-semibold text-white">{{ $user->display_name }}</h2>
                 <label for="profilePicture" class="text-blue-100 text-sm cursor-pointer hover:text-white transition-colors">
                     Click here or on the profile picture to change it.
                 </label>
+
+                <button
+                    wire:show="avatar"
+                    wire:click.prevent="updateProfile"
+                    wire:loading.class="opacity-50 pointer-events-none"
+                    wire:target="updateProfile"
+                    type="button"
+
+                    class="cursor-pointer mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                    Save
+                </button>
             </div>
 
-            <!-- Form Section -->
             <div class="p-6">
                 <livewire:auth.update-password />
             </div>
