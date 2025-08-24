@@ -4,11 +4,13 @@ namespace App\Livewire;
 
 use App\Models\Friendship;
 use App\Models\User;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Title('Add Friends - Dardashe')]
+#[Layout('components.layouts.pages')]
 class AddFriends extends Component
 {
 

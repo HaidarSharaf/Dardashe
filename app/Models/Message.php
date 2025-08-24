@@ -44,4 +44,6 @@ class Message extends Model
         return $this->seen_at !== null;
     }
 
+
+
 }

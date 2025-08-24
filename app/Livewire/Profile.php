@@ -4,12 +4,14 @@ namespace App\Livewire;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 #[Title('My Profile - Dardashe')]
+#[Layout('components.layouts.pages')]
 class Profile extends Component
 {
     use WithFileUploads;
@@ -31,7 +33,7 @@ class Profile extends Component
         ]);
 
         if($this->user->avatar !== 'default_user_avatar.png') {
-            Storage::disk('public')->delete('users_avatars' . $this->user->avatar);
+            Storage::disk('public')->delete('users_avatars/' . $this->user->avatar);
         }
 
         $this->avatar_path = $this->avatar->storePublicly('users_avatars', ['disk' => 'public']);

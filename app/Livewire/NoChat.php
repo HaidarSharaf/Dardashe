@@ -6,10 +6,10 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Title('Dardashe')]
-class Home extends Component
+class NoChat extends Component
 {
     public function render()
     {
-        return view('livewire.home');
+        return view('livewire.no-chat');
     }
 }

@@ -7,10 +7,6 @@
             >
             <div>
                 <h2 class="font-semibold md:text-base text-sm text-gray-900">Alex Johnson</h2>
-                <p class="text-sm text-sky-600 flex items-center">
-                    <span class="size-2 bg-sky-600 rounded-full mr-2"></span>
-                    Active
-                </p>
             </div>
         </div>
     </div>

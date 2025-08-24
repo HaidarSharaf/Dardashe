@@ -2,7 +2,7 @@
     <div class="max-w-3xl mx-auto">
 
         <div class="text-center mb-8">
-            <h1 class="text-3xl font-bold text-white mb-2">Profile Settings</h1>
+            <h1 class="text-3xl font-bold text-white mb-4 underline">Profile Settings</h1>
             <p class="text-white">Manage your account information</p>
         </div>
 
@@ -10,20 +10,22 @@
             <div class="flex flex-col items-center">
                 <div class="relative mb-4">
                     <input wire:model="avatar" type="file" id="profilePicture" accept="image/*" class="hidden">
-                    <label for="profilePicture" class="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-gray-50 transition-colors">
+                    <label for="profilePicture" class="md:size-24 size-20 bg-white rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-gray-50 transition-colors">
                         @if($avatar)
                             <img
                                 src="{{ $avatar->temporaryUrl() }}"
-                                class="rounded-full shadow-xl"
+                                class="size-full object-cover rounded-full shadow-xl"
                             >
                         @else
                             <img
                                 src="{{ asset('storage/users_avatars/' . $user->avatar) }}"
-                                 class="rounded-full shadow-xl"
+                                 class="size-full object-cover rounded-full shadow-xl"
                             >
                         @endif
                     </label>
                 </div>
+
+
                 <h2 class="text-xl font-semibold text-white">{{ $user->display_name }}</h2>
                 <label for="profilePicture" class="text-blue-100 text-sm cursor-pointer hover:text-white transition-colors">
                     Click here or on the profile picture to change it.
@@ -40,6 +42,14 @@
                 >
                     Save
                 </button>
+
+                <p
+                    wire:loading
+                    wire:change="avatar"
+                    class="text-sm text-white font-bold mb-2"
+                >
+                    Uploading...
+                </p>
             </div>
 
             <div class="p-6">

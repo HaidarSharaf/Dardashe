@@ -43,16 +43,10 @@
 <div
     x-show="!loading"
     x-transition.opacity.duration.500ms
-    class="flex items-start justify-center w-full min-h-screen transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0"
+    class="flex items-start justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0"
 >
-    <div
-        class="fixed inset-y-0 left-0 flex-4/5 z-40 transform transition-transform lg:static lg:translate-x-0 lg:flex-1/3"
-    >
-        <livewire:chats />
-    </div>
-
     <main
-        class="flex-1 flex flex-col lg:flex-2/3 h-screen bg-white shadow-2xl rounded-lg lg:mx-0"
+        class="flex w-full flex-col-reverse justify-center lg:flex-row"
     >
         {{ $slot }}
     </main>

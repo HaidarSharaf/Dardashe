@@ -6,7 +6,7 @@ use App\Notifications\PasswordReset;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use App\Models\Message;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -27,6 +27,10 @@ class User extends Authenticatable
         'otp_expires_at',
         'otp_sent_at',
     ];
+
+    public function getRouteKeyName(){
+        return 'display_name';
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -100,4 +104,22 @@ class User extends Authenticatable
         });
     }
 
+    public function latestMessage(User $user1, User $user2)
+    {
+        return Message::where(function ($query) use ($user1, $user2) {
+            $query->where('sender_id', $user1->id)
+                ->where('receiver_id', $user2->id);
+        })->orWhere(function ($query) use ($user1, $user2) {
+            $query->where('sender_id', $user2->id)
+                ->where('receiver_id', $user1->id);
+        })->latest()->first();
+    }
+
+    public function unseenMessagesCount(User $user1, User $user2)
+    {
+        return Message::where('sender_id', $user2->id)
+            ->where('receiver_id', $user1->id)
+            ->whereNull('is_seen')
+            ->count();
+    }
 }

@@ -1,5 +1,5 @@
 <div class="bg-sky-800 p-3 flex items-center justify-between">
-    <div class="flex items-center space-x-3">
+    <div class="flex items-center space-x-2">
         <img
             src="{{ asset('images/dardashe.png') }}"
             class="lg:size-12 md:size-11 size-10 rounded-full object-cover"
@@ -7,7 +7,7 @@
         <span class="text-white font-bold lg:text-xl text-lg">Dardashe</span>
     </div>
 
-    <div class="flex md:space-x-3 space-x-1"
+    <div class="flex items-center xl:space-x-3 space-x-2"
     >
 
         <a
@@ -39,6 +39,16 @@
                 class="lg:size-12 md:size-11 size-9 rounded-full object-cover"
             >
         </a>
+
+        <button
+            wire:click.prevent="logout"
+            class="text-white hover:bg-sky-700 p-2 mt-1 rounded-xl transition-colors cursor-pointer"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-box-arrow-right lg:size-6 size-5 text-red-600 font-bold" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+            </svg>
+        </button>
 
     </div>
 </div>
