@@ -15,9 +15,9 @@
         <x-date :date="'Today'"/>
 
         @forelse($messages as $message)
-            <livewire:chat-message :message="$message"/>
+            <livewire:chat-message :message="$message" :isSentByMe="$message->sender_id === $user->id"/>
         @empty
-            <p class="text-center text-sky-700 mt-5 font-bold text-xl">No messages yet.</p>
+            <p class="text-center text-sky-700 mt-10 font-bold text-xl">No messages to show.</p>
         @endforelse
 
 

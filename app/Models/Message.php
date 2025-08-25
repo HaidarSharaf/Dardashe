@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Message extends Model
 {
@@ -17,6 +15,7 @@ class Message extends Model
         'text',
         'is_seen',
     ];
+
 
     protected $casts = [
         'sender_id' => 'integer',
@@ -44,6 +43,19 @@ class Message extends Model
         return $this->is_seen !== null;
     }
 
+    public function getMessageSenderAvatarAttribute(){
+        $user = User::find($this->sender_id);
+        return $user->avatar;
+    }
+
+    public function latestMedia()
+    {
+        return $this->hasOne(MessageMedia::class)->latestOfMany();
+    }
+
+    public function hasMedia(){
+        return $this->medias()->exists();
+    }
 
 
 }

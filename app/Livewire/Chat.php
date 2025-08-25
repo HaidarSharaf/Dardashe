@@ -26,7 +26,7 @@ class Chat extends Component
             $query->where('sender_id', $this->friend->id)
                 ->where('receiver_id', $this->user->id);
         })
-        ->orderBy('created_at', 'desc')
+        ->orderBy('created_at', 'asc')
         ->get();
     }
 

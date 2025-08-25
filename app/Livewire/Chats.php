@@ -29,7 +29,8 @@ class Chats extends Component
 
         return [
             'sender' => $message->sender_id,
-            'message' => $message->text ? $message->text : $message->medias()->media_type()->latest(),
+            'message' => $message->text,
+            'media' => $message->latestMedia?->media_type,
             'time' => $message->created_at->diffForHumans(),
         ];
     }

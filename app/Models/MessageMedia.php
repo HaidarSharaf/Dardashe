@@ -17,6 +17,8 @@ class MessageMedia extends Model
         'media_type',
     ];
 
+    protected $table = 'message_medias';
+
     protected $casts = [
         'message_id' => 'integer',
     ];

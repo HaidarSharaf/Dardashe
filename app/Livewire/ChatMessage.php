@@ -8,6 +8,7 @@ use Livewire\Component;
 class ChatMessage extends Component
 {
     public Message $message;
+    public bool $isSentByMe;
 
     public function render()
     {
