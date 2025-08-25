@@ -7,6 +7,7 @@ use App\Livewire\Auth\Register;
 use App\Livewire\Auth\ResetPassword;
 use App\Livewire\Auth\UpdatePassword;
 use App\Livewire\Auth\VerifyEmail;
+use App\Livewire\Chat;
 use App\Livewire\Chats;
 use App\Livewire\Friends;
 use App\Livewire\Home;
@@ -38,6 +39,6 @@ Route::get('/friends', Friends::class)->name('friends');
 
 Route::get('/profile', Profile::class)->name('profile');
 
-Route::get('/chat/{user}', Home::class)->name('chat');
+Route::get('/chat/{friend}', Chat::class)->name('chat');
 
 

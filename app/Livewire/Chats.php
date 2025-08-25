@@ -17,7 +17,7 @@ class Chats extends Component
 
     public function getLatestMessage($friendId)
     {
-        $message = $this->user->latestMessage($this->user, User::find($friendId));
+        $message = $this->user->latestMessage(User::find($friendId));
 
         if (!$message) {
             return [
@@ -36,7 +36,7 @@ class Chats extends Component
 
     public function getUnseenMessagesCount($friendId)
     {
-        return $this->user->unseenMessagesCount($this->user, User::find($friendId));
+        return $this->user->unseenMessagesCount(User::find($friendId));
     }
 
     public function getLastMessageSenderName($sender_id)

@@ -15,13 +15,13 @@ class Message extends Model
         'sender_id',
         'receiver_id',
         'text',
-        'seen_at',
+        'is_seen',
     ];
 
     protected $casts = [
         'sender_id' => 'integer',
         'receiver_id' => 'integer',
-        'seen_at' => 'datetime',
+        'is_seen' => 'datetime',
     ];
 
     public function sender()
@@ -41,7 +41,7 @@ class Message extends Model
 
     public function isSeen()
     {
-        return $this->seen_at !== null;
+        return $this->is_seen !== null;
     }
 
 

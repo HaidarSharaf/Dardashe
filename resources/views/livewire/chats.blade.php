@@ -17,68 +17,64 @@
     >
         <livewire:header />
 
-        <div class="w-full mt-2 z-40">
-
-            <div class="px-4 py-3 bg-gray-50 border-b-gray-200">
-                <div class="relative">
-                    <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M21.71 20.29L18 16.61A9 9 0 1016.61 18l3.68 3.68a1 1 0 001.42-1.42zM11 18a7 7 0 117-7 7 7 0 01-7 7z"/>
-                    </svg>
-                    <input
-                        type="text" placeholder="Search chats..."
-                        class="w-full pl-10 pr-4 py-2 bg-white border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-sky-600 focus:border-transparent"
-                    >
-                </div>
-            </div>
+        <div class="w-full z-40">
 
             <div class="flex-1 overflow-y-auto">
 
                 @forelse($chats as $chat)
 
-                    <a
-                        wire:navigate
-                        href="{{ route('chat', $chat->display_name) }}"
-                        wire:key="{{ $chat->id }}"
-                    >
-                        <div
-                            class="flex items-center p-4 hover:bg-sky-100 cursor-pointer transition-colors"
-                            :class="{'bg-sky-100': window.location.href.includes('{{ $chat->display_name }}') }"
+                    @php
+                        $lastMessage = $this->getlatestMessage($chat->id);
+                    @endphp
+
+                    @if($lastMessage['sender'] !== null)
+                        <a
+                            wire:navigate
+                            href="{{ route('chat', $chat) }}"
+                            wire:key="{{ $chat->id }}"
                         >
-                            <div class="relative">
-                                <img src="{{ asset('storage/users_avatars/' . $chat->avatar) }}"
-                                     class="lg:size-12 md:size-11 sm:size-10 size-8 rounded-full object-cover"
-                                >
-                            </div>
-
-                            @php
-                                $lastMessage = $this->getlatestMessage($chat->id);
-                                $unseenCount = $this->getUnseenMessagesCount($chat->id);
-                            @endphp
-
-                            <div class="ml-4 flex-1 min-w-0">
-                                <div class="flex justify-between items-start mb-1">
-                                    <h3 class="font-semibold text-gray-900 text-base">{{ $chat->display_name }}</h3>
-                                    <span
-                                        @class([
-                                            'text-sky-600' => $unseenCount > 0,
-                                            'text-gray-700' => $unseenCount === 0,
-                                            'text-xs font-medium' => true
-                                        ])
+                            <div
+                                class="flex items-center p-4 hover:bg-sky-100 cursor-pointer transition-colors"
+                                :class="{'bg-sky-100': window.location.href.includes('{{ $chat->display_name }}') }"
+                            >
+                                <div class="relative">
+                                    <img src="{{ asset('storage/users_avatars/' . $chat->avatar) }}"
+                                         class="lg:size-12 md:size-11 sm:size-10 size-8 rounded-full object-cover"
                                     >
-                                        {{ $lastMessage['time'] }}
-                                    </span>
                                 </div>
 
-                                <p class="text-sm text-gray-600 truncate">{{ $this->getLastMessageSenderName($lastMessage['sender']) }} : {{ $lastMessage['message'] }}</p>
+                                @php
+                                    $unseenCount = $this->getUnseenMessagesCount($chat->id);
+                                @endphp
+
+                                <div class="ml-4 flex-1 min-w-0">
+                                    <div class="flex justify-between items-start mb-1">
+                                        <h3 class="font-semibold text-gray-900 text-base">{{ $chat->display_name }}</h3>
+                                        <span
+                                            @class([
+                                                'text-sky-600' => $unseenCount > 0,
+                                                'text-gray-700' => $unseenCount === 0,
+                                                'text-xs font-medium' => true
+                                            ])
+                                        >
+                                            {{ $lastMessage['time'] }}
+                                        </span>
+                                    </div>
+
+                                    <p class="text-sm text-gray-600 truncate">{{ $this->getLastMessageSenderName($lastMessage['sender']) }} : {{ $lastMessage['message'] }}</p>
+                                </div>
+
+                                @if($unseenCount > 0)
+                                    <div class="ml-2 bg-sky-600 text-white text-xs rounded-full px-2 py-1 md:max-w-[25px] text-center">
+                                        {{ $unseenCount }}
+                                    </div>
+                                @endif
+
                             </div>
+                        </a>
+                    @else
 
-                            @if($unseenCount > 0)
-                                <div class="ml-2 bg-sky-600 text-white text-xs rounded-full px-2 py-1 md:max-w-[25px] text-center">
-                                    {{ $unseenCount }}
-                                </div>
-                            @endif
-                        </div>
-                    </a>
+                    @endif
 
                 @empty
                     <div class="p-4 text-center mt-5 text-sky-600">

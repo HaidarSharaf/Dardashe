@@ -104,22 +104,22 @@ class User extends Authenticatable
         });
     }
 
-    public function latestMessage(User $user1, User $user2)
+    public function latestMessage(User $user)
     {
-        return Message::where(function ($query) use ($user1, $user2) {
-            $query->where('sender_id', $user1->id)
-                ->where('receiver_id', $user2->id);
-        })->orWhere(function ($query) use ($user1, $user2) {
-            $query->where('sender_id', $user2->id)
-                ->where('receiver_id', $user1->id);
+        return Message::where(function ($query) use ($user) {
+            $query->where('sender_id', $this->id)
+                ->where('receiver_id', $user->id);
+        })->orWhere(function ($query) use ($user) {
+            $query->where('sender_id', $user->id)
+                ->where('receiver_id', $this->id);
         })->latest()->first();
     }
 
-    public function unseenMessagesCount(User $user1, User $user2)
+    public function unseenMessagesCount(User $user)
     {
-        return Message::where('sender_id', $user2->id)
-            ->where('receiver_id', $user1->id)
-            ->whereNull('is_seen')
+        return Message::where('sender_id', $user->id)
+            ->where('receiver_id', $this->id)
+            ->where('is_seen', null)
             ->count();
     }
 }

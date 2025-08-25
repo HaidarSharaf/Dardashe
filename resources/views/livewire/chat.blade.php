@@ -2,36 +2,25 @@
     <div class="bg-gray-100 py-3 flex items-center justify-center shadow-sm">
         <div class="flex items-center space-x-4">
             <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face&auto=format"
+                src="{{ asset('storage/users_avatars/' . $friend->avatar) }}"
                  class="lg:size-12 md:size-11 sm:size-10 size-8 rounded-full object-cover"
             >
             <div>
-                <h2 class="font-semibold md:text-base text-sm text-gray-900">Alex Johnson</h2>
+                <h2 class="font-semibold md:text-base text-sm text-gray-900">{{ $friend->display_name }}</h2>
             </div>
         </div>
     </div>
 
     <div class="flex-1 overflow-y-auto p-6 space-y-4 bg-white">
-        <!-- Date Separator -->
         <x-date :date="'Today'"/>
 
-        <!-- Received Messages -->
-        <livewire:friend-message />
+        @forelse($messages as $message)
+            <livewire:chat-message :message="$message"/>
+        @empty
+            <p class="text-center text-sky-700 mt-5 font-bold text-xl">No messages yet.</p>
+        @endforelse
 
-        <livewire:my-message />
 
-        <!-- Typing Indicator -->
-        <div class="flex items-start space-x-3">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face&auto=format"
-                 class="md:size-8 size-6 rounded-full object-cover mt-1">
-            <div class="bg-white rounded-2xl rounded-tl-md px-4 py-3 shadow-sm">
-                <div class="flex space-x-1">
-                    <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                    <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.1s;"></div>
-                    <div class="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="bg-gray-200 px-6 py-4" x-data="{ openMedia: false, openWithKeyboard: false }">
