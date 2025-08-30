@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Friendship;
 use App\Models\User;
+use Cache;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -26,11 +27,24 @@ class Friends extends Component
 
     public function removeFriend($friendId)
     {
+        $this->authorize('remove-friend', User::find($friendId));
         $friendship = Friendship::whereIn('user1_id', [$friendId, $this->user->id])
             ->whereIn('user2_id', [$friendId, $this->user->id])
             ->first();
         $friendship->delete();
         session()->flash('message', 'Friend removed.');
+    }
+
+    public function goToChat($friendId){
+        $this->authorize('send-message', User::find($friendId));
+
+        Cache::forget('user_in_chat_' . $this->user->id);
+        Cache::put('user_in_chat_' . $this->user->id, $friendId);
+
+        $friend = User::find($friendId);
+        $this->user->updateIsSeen($friend);
+
+        $this->redirect(route('chat', $friend), navigate: true);
     }
 
     public function render()

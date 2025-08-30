@@ -28,6 +28,7 @@ class Profile extends Component
 
     public function updateProfile()
     {
+        $this->authorize('update-profile', $this->user);
         $this->validate([
             'avatar' => 'required|image|max:2056',
         ]);

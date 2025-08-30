@@ -55,6 +55,7 @@ class AddFriends extends Component
 
     public function addFriend($userId)
     {
+        $this->authorize('addFriend', User::find($userId));
         Friendship::create([
             'user1_id' => $this->user->id,
             'user2_id' => $userId,

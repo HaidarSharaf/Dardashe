@@ -44,7 +44,7 @@
                         wire:target="addFriend({{ $suggestion->id }})"
                         class="text-center font-semibold cursor-pointer gap-2 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm text-white bg-blue-500 hover:bg-blue-600 rounded-lg transition-colors flex-shrink-0"
                     >
-                        Add Friend +
+                        + Add Friend
                     </button>
                 </div>
             @empty

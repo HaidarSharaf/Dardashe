@@ -34,6 +34,48 @@
                 </div>
 
                 <div>
+                    <label class="block text-sm md:text-base mb-1 text-white">Display Name:</label>
+                    <input
+                        wire:model.live="display_name"
+                        type="text"
+                        class="w-full bg-white border border-white/20 rounded-xl p-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    @error('display_name')
+                    <span class="text-red-600 text-sm">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div>
+                    <label class="block font-medium text-sm md:text-base mb-1 text-white">
+                        Avatar:
+                        <span class="text-xs">
+                            (Not required)
+                        </span>
+                    </label>
+                    <div class="relative">
+                        <input
+                            wire:model="avatar"
+                            type="file"
+                            accept="image/*"
+                            class="w-full bg-white border border-white/20 rounded-xl p-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <p class="text-white/60 text-xs mt-1">PNG, JPG, JPEG (Max 2MB)</p>
+                        @error('avatar')
+                            <span class="text-red-600 text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div wire:loading wire:change="avatar" class="text-white/70 font-semibold text-base mt-1">
+                        Uploading...
+                    </div>
+                    @if($avatar)
+                        <div class="mt-3 flex items-center justify-center">
+                            <img src="{{ $avatar->temporaryUrl() }}" class="w-20 h-20 object-contain rounded-full border border-white/20">
+                        </div>
+                    @endif
+                </div>
+
+
+                <div>
                     <label class="block font-medium text-sm md:text-base mb-1 text-white">Password:</label>
                     <input
                         wire:model="password"
@@ -59,10 +101,11 @@
                         type="submit"
                         wire:loading.attr="disabled"
                         wire:loading.class="pointer-events-none"
+                        wire:target="register"
                         class="w-full bg-[#1750b6] hover:bg-blue-800 transition text-white md:text-base text-sm font-semibold cursor-pointer py-3 px-8 rounded-xl shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        <span wire:loading.remove>Create Account</span>
-                        <span wire:loading>Creating...</span>
+                        <span wire:loading.remove wire:target="register">Create Account</span>
+                        <span wire:loading wire:target="register">Creating...</span>
                     </button>
                 </div>
 

@@ -6,7 +6,7 @@ use App\Notifications\PasswordReset;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Models\Message;
+
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -91,18 +91,42 @@ class User extends Authenticatable
 
     public function friends()
     {
-        return Friendship::where('user1_id', $this->id)
-            ->orWhere('user2_id', $this->id);
+        return Friendship::where(function ($query) {
+            $query->where('user1_id', $this->id)
+                ->orWhere('user2_id', $this->id);
+        });
     }
 
     public function friendsList()
     {
-        $friendships = $this->friends()->where('status', 'accepted')->get();
+        $friendships = $this->friends()
+            ->where('status', 'accepted')
+            ->get();
 
         return $friendships->map(function ($friendship) {
             return $friendship->user1_id === $this->id ? $friendship->user2 : $friendship->user1;
         });
     }
+
+    public function chatsList(){
+        $messages = Message::where(function ($query){
+                $query->where('sender_id', $this->id)
+                    ->orWhere('receiver_id', $this->id);
+            })
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $uniqueChats = $messages->unique(function ($message) {
+            return collect([$message->sender_id, $message->receiver_id])->sort()->join('-');
+        });
+
+        $chatUsers = $uniqueChats->map(function ($message){
+            return $message->sender_id == $this->id ? $message->receiver : $message->sender;
+        });
+
+        return $chatUsers->values();
+    }
+
 
     public function latestMessage(User $user)
     {
@@ -122,4 +146,13 @@ class User extends Authenticatable
             ->where('is_seen', null)
             ->count();
     }
+
+    public function updateIsSeen(User $user){
+        Message::where('sender_id', $user->id)
+            ->where('receiver_id', $this->id)
+            ->whereNull('is_seen')
+            ->update(['is_seen' => now()]);
+    }
+
+
 }

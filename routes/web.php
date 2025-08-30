@@ -8,9 +8,7 @@ use App\Livewire\Auth\ResetPassword;
 use App\Livewire\Auth\UpdatePassword;
 use App\Livewire\Auth\VerifyEmail;
 use App\Livewire\Chat;
-use App\Livewire\Chats;
 use App\Livewire\Friends;
-use App\Livewire\Home;
 use App\Livewire\NoChat;
 use App\Livewire\Profile;
 use Illuminate\Support\Facades\Route;
@@ -29,16 +27,18 @@ Route::middleware(['auth'])->group(function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/update-password', UpdatePassword::class)->name('update-password');
+
     Route::get('/', NoChat::class)->name('home');
+
+    Route::get('/add-friends', AddFriends::class)->name('add-friends');
+
+    Route::get('/friends', Friends::class)->name('friends');
+
+    Route::get('/profile', Profile::class)->name('profile');
+
+    Route::get('/chat/{friend}', Chat::class)->name('chat')->can('view-chat', 'friend');
 });
 
 
-Route::get('/add-friends', AddFriends::class)->name('add-friends');
-
-Route::get('/friends', Friends::class)->name('friends');
-
-Route::get('/profile', Profile::class)->name('profile');
-
-Route::get('/chat/{friend}', Chat::class)->name('chat');
 
 

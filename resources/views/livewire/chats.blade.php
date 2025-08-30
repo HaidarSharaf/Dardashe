@@ -19,7 +19,7 @@
 
         <div class="w-full z-40">
 
-            <div class="flex-1 overflow-y-auto">
+            <div class="flex-1 overflow-y-auto" wire:poll.5s>
 
                 @forelse($chats as $chat)
 
@@ -28,10 +28,10 @@
                     @endphp
 
                     @if($lastMessage['sender'] !== null)
-                        <a
-                            wire:navigate
-                            href="{{ route('chat', $chat) }}"
+                        <button
+                            wire:click="goToChat({{$chat->id}})"
                             wire:key="{{ $chat->id }}"
+                            class="w-full cursor-pointer"
                         >
                             <div
                                 class="flex items-center p-4 hover:bg-sky-100 cursor-pointer transition-colors"
@@ -96,7 +96,7 @@
                                 @endif
 
                             </div>
-                        </a>
+                        </button>
                     @else
 
                     @endif

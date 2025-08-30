@@ -2,7 +2,10 @@
 
 namespace App\Livewire;
 
+use App\Models\Message;
 use App\Models\User;
+use Cache;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class Chats extends Component
@@ -12,7 +15,7 @@ class Chats extends Component
     public function mount()
     {
         $this->user = auth()->user();
-        $this->chats = $this->user->friendsList();
+        $this->chats = $this->user->chatsList();
     }
 
     public function getLatestMessage($friendId)
@@ -47,6 +50,21 @@ class Chats extends Component
         }
         $sender = User::find($sender_id);
         return $sender->display_name;
+    }
+
+    #[On('message-sent')]
+    public function onMessageSent(): void
+    {
+        $this->chats = $this->user->chatsList();
+    }
+
+    public function goToChat($friendId){
+        Cache::forget('user_in_chat_' . $this->user->id);
+        Cache::put('user_in_chat_' . $this->user->id, $friendId);
+
+        $friend = User::find($friendId);
+        $this->user->updateIsSeen($friend);
+        $this->redirect(route('chat', $friend), navigate: true);
     }
 
     public function render()
