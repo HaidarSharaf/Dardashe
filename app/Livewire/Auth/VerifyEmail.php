@@ -51,6 +51,7 @@ class VerifyEmail extends AuthComponent
             $this->user->notify(new EmailVerification($otp));
             session()->flash('status', 'An OTP code was sent to your email.');
         } catch (Exception $e) {
+            dd($e->getMessage());
             session()->flash('error', 'Failed to send OTP. Please try again.');
         }
     }
