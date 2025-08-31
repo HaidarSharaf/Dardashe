@@ -23,9 +23,6 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('verify-email', VerifyEmail::class)->name('verify-email');
-});
-
-Route::middleware(['auth'])->group(function () {
     Route::get('/update-password', UpdatePassword::class)->name('update-password');
 
     Route::get('/', NoChat::class)->name('home');
