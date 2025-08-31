@@ -84,8 +84,8 @@ class Chat extends Component
             ]);
         }
 
-        $this->text = '';
-        $this->media = null;
+        $this->resetAttributes();
+
         $this->resetValidation();
 
         broadcast(new MessageSent($message))->toOthers();
@@ -93,6 +93,11 @@ class Chat extends Component
         $this->dispatch('$refresh');
 
         $this->dispatch('message-sent');
+    }
+
+    public function resetAttributes(){
+        $this->text = '';
+        $this->media = null;
     }
 
     public function getListeners()

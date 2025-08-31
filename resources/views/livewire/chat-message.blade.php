@@ -77,7 +77,7 @@
         </div>
 
         <div
-            class="w-full flex text-xs text-gray-500 px-2 justify-end gap-4"
+            class="w-full text-xs text-gray-500 px-2 space-x-4"
         >
             @if($isSentByMe && $message->is_seen !== null)
                 <span class="font-bold">Seen</span>
@@ -90,7 +90,7 @@
                     'text-xs text-gray-500 ' => true
                 ])
             >
-                {{ $message->created_at->format('H:i') }}
+                {{ $message->created_at->diffForHumans() }}
             </span>
 
         </div>

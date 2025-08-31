@@ -55,6 +55,7 @@
                     x-on:keydown.down.prevent="$focus.wrap().next()"
                     x-on:keydown.up.prevent="$focus.wrap().previous()"
                     class="w-full z-40 mb-2 bg-white rounded-lg p-4"
+                    x-data
                 >
 
                     <div class="w-full">
@@ -66,6 +67,7 @@
                             <h4 class="text-center text-gray-700 text-sm font-medium leading-snug">Drag and Drop your file here or</h4>
                             <input
                                 wire:model.live="media"
+                                x-ref="fileInput"
                                 x-on:change="openMedia = false; openWithKeyboard = false"
                                 id="dropzone-file"
                                 type="file"
@@ -132,7 +134,11 @@
                         >
                     </div>
                     <button
-                        wire:click="sendMessage({{ $friend->id }})"
+                        @click.prevent="
+                            $wire.sendMessage({{ $friend->id }}).then(() => {
+                                $refs.fileInput.value = null;
+                            })
+                        "
                         wire:loading.class="opacity-50 pointer-events-none"
                         :class="{
                             'cursor-pointer hover:bg-sky-700': $wire.text !== '' || $wire.media,

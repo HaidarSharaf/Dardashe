@@ -52,8 +52,15 @@ class Chats extends Component
         return $sender->display_name;
     }
 
-    #[On('message-sent')]
-    public function onMessageSent(): void
+    public function getListeners()
+    {
+        return [
+            "echo:chat.{$this->user->id},MessageSent" => 'refreshChats',
+            'message-sent' => 'refreshChats',
+        ];
+    }
+
+    public function onMessageSentOrReceived(): void
     {
         $this->chats = $this->user->chatsList();
     }
