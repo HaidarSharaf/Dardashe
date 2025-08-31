@@ -64,6 +64,12 @@ class VerifyEmail extends AuthComponent
         ])->save();
     }
 
+    public function logout()
+    {
+        auth()->logout();
+        $this->redirect(route('login'), navigate: true);
+    }
+    
     public function render()
     {
         return view('livewire.auth.verify-email');
