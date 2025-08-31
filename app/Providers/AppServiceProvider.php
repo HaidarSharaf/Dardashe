@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('send-message', [UserPolicy::class, 'sendMessage']);
         Gate::define('view-message', [UserPolicy::class, 'viewMessage']);
         Gate::define('update-profile', [UserPolicy::class, 'update']);
-
+        Gate::define('access', [UserPolicy::class, 'access']);
 
     }
 }
