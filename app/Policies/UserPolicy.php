@@ -132,4 +132,8 @@ class UserPolicy
     }
 
 
+    public function access(User $user){
+        return $user->email_verified_at !== null;
+    }
+
 }
