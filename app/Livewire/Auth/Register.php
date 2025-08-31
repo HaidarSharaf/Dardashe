@@ -30,7 +30,7 @@ class Register extends AuthComponent
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'display_name' => ['required', 'string', 'max:255', 'unique:users,display_name'],
-            'avatar' => ['nullable', 'image', 'max:2056'],
+            'avatar' => ['required', 'image', 'max:2056'],
             'password' => ['required', 'string', 'confirmed', 'min:10', Rules\Password::defaults()],
         ]);
 
