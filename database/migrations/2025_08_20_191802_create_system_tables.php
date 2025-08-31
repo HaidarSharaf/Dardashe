@@ -37,37 +37,7 @@ return new class extends Migration
             $table->enum('media_type', ['image', 'video', 'audio', 'file'])->default('image');
             $table->timestamps();
         });
-
-        Schema::create('groups', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('avatar')->nullable();
-            $table->timestamps();
-        });
-
-        Schema::create('group_members', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('group_id')->constrained('groups')->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->timestamps();
-            $table->unique(['group_id', 'user_id']);
-        });
-
-        Schema::create('group_messages', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('group_id')->constrained('groups')->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->text('text')->nullable();
-            $table->timestamps();
-        });
-
-        Schema::create('group_message_medias', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('group_message_id')->constrained('group_messages')->cascadeOnDelete();
-            $table->string('media_path');
-            $table->enum('media_type', ['image', 'video', 'audio', 'file'])->default('image');
-            $table->timestamps();
-        });
+       
     }
 
     /**
@@ -75,10 +45,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('group_message_medias');
-        Schema::dropIfExists('group_messages');
-        Schema::dropIfExists('group_members');
-        Schema::dropIfExists('groups');
         Schema::dropIfExists('message_medias');
         Schema::dropIfExists('messages');
         Schema::dropIfExists('friendships');
