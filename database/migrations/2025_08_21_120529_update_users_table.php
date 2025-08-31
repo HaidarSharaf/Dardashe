@@ -15,11 +15,6 @@ return new class extends Migration
             $table->dropColumn('avatar');
             $table->string('avatar')->default('default_user_avatar.png');
         });
-
-        Schema::table('groups', function (Blueprint $table) {
-            $table->dropColumn('avatar');
-            $table->string('avatar')->default('default_group_avatar.png');
-        });
     }
 
     /**
@@ -28,11 +23,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('avatar');
-            $table->string('avatar')->nullable();
-        });
-
-        Schema::table('groups', function (Blueprint $table) {
             $table->dropColumn('avatar');
             $table->string('avatar')->nullable();
         });
