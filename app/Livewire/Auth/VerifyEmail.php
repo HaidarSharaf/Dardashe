@@ -23,7 +23,7 @@ class VerifyEmail extends AuthComponent
 
     public bool $send;
 
-    public function mount(){
+     public function mount(){
         $this->user = Auth::user();
 
         $this->email = $this->user->email;
@@ -51,9 +51,38 @@ class VerifyEmail extends AuthComponent
             $this->user->notify(new EmailVerification($otp));
             session()->flash('status', 'An OTP code was sent to your email.');
         } catch (Exception $e) {
-            dd($e->getMessage());
             session()->flash('error', 'Failed to send OTP. Please try again.');
         }
+    }
+
+    public function verifyOtp(){
+        $this->validate();
+
+        if (!$this->user->otp_code) {
+            session()->flash('error', 'No valid OTP found. Please request a new one.');
+            return;
+        }
+
+        if ($this->expiredOtp()) {
+            $this->clearOtp();
+            session()->flash('error', 'OTP has expired. Please request a new one.');
+            return;
+        }
+
+        if (Hash::check($this->otp, $this->user->otp_code)) {
+            $this->user->forceFill([
+                'email_verified_at' => now(),
+                'otp_code' => null,
+                'otp_expires_at' => null,
+                'otp_sent_at' => null,
+            ])->save();
+
+            session()->flash('message', 'Email verified successfully!');
+            $this->redirect(route('home'), navigate: true);
+        } else{
+            session()->flash('error', 'Invalid OTP code.');
+        }
+        $this->reset(['otp']);
     }
 
     private function clearOtp()
