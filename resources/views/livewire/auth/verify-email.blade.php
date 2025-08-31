@@ -63,13 +63,12 @@
                 <div class="mt-4 flex justify-center">
                     <p class="text-sm text-white">
                         Or,
-                        <a
-                            wire:navigate
-                            href=""
+                        <button
+                            wire:click="logout"
                             class="text-blue-500 hover:underline"
                         >
                             logout from your account.
-                        </a>
+                        </button>
                     </p>
                 </div>
             </form>
