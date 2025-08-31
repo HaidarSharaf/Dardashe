@@ -49,7 +49,7 @@ class Register extends AuthComponent
 
         Auth::login($user);
 
-        $this->redirect(route('verify-email'), navigate: true);
+        $this->redirect(route('home'), navigate: true);
     }
 
     public function render()
