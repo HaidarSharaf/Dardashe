@@ -4,7 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Friendship;
 use App\Models\User;
-use Cache;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Title;
 use Livewire\Component;
