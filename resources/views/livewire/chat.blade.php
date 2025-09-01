@@ -135,9 +135,7 @@
                     </div>
                     <button
                         @click.prevent="
-                            $wire.sendMessage({{ $friend->id }}).then(() => {
-                                if ($refs.fileInput) $refs.fileInput.value = null;
-                            })
+                            $wire.sendMessage({{ $friend->id }})
                         "
                         wire:loading.class="opacity-50 pointer-events-none"
                         :class="{
