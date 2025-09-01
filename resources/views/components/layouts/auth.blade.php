@@ -15,6 +15,7 @@
 
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @livewireStyles
 </head>
 <body class=" bg-gradient-to-br from-gray-700 via-gray-800 to-blue-900 flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col" x-data x-on:click="$dispatch('search:clear-text')">
 
