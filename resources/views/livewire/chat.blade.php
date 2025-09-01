@@ -1,4 +1,4 @@
-<div class="min-h-full w-full flex flex-col">
+<div class="w-full flex flex-col">
     <div class="bg-gray-100 py-3 flex items-center justify-center shadow-sm">
         <div class="flex items-center space-x-4">
             <img
