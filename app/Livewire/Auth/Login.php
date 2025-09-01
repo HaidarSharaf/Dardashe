@@ -42,10 +42,7 @@ class Login extends AuthComponent
 
         $user = Auth::user();
 
-        if ($user->email_verified_at === null) {
-            $this->redirect(route('verify-email'), navigate: true);
-        } else{
-            $this->redirect(route('home'), navigate: true);        }
+        $this->redirect(route('home'), navigate: true);        
     }
 
     protected function ensureIsNotRateLimited(): void
