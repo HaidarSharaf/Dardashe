@@ -5,8 +5,7 @@ window.Pusher = Pusher;
 
 window.Echo = new Echo({
   broadcaster: 'reverb',
-  wsHost: window.location.hostname,
-  wsPath: '/app',
+  wsHost: 'ws.dardashe.site',
   forceTLS: true,
   enabledTransports: ['ws', 'wss'],
 });
