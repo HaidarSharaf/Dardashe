@@ -34,11 +34,7 @@ return [
             'path' => env('REVERB_SERVER_PATH', ''),
             'hostname' => env('REVERB_HOST'),
             'options' => [
-                'tls' => [
-                    'local_cert' => 'etc/nginx/ssl/ws.dardashe.site.crt',
-                    'local_pk' => 'etc/nginx/ssl/ws.dardashe.site.key',
-                    'verify_peer' => false
-                ],
+                'tls' => [],
             ],
             'max_request_size' => env('REVERB_MAX_REQUEST_SIZE', 10_000),
             'scaling' => [
