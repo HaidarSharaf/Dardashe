@@ -41,7 +41,7 @@ class Login extends AuthComponent
         Session::regenerate();
 
         $user = Auth::user();
-        return redirect()->route('home');
+        $this->redirect(route('home'), navigate: true);
     }
 
     protected function ensureIsNotRateLimited(): void
