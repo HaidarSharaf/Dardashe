@@ -6,7 +6,7 @@ use App\Events\MessageSent;
 use App\Models\Message;
 use App\Models\MessageMedia;
 use App\Models\User;
-use Cache;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
