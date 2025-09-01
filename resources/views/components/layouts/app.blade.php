@@ -61,6 +61,10 @@
 
 </div>
 
+            <script>
+                console.log(import.meta.env.VITE_REVERB_PORT)
+            </script>
+
 
 </body>
 </html>
