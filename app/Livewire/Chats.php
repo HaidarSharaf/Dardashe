@@ -4,7 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Message;
 use App\Models\User;
-use Cache;
+use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
