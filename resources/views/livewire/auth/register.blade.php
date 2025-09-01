@@ -48,9 +48,6 @@
                 <div>
                     <label class="block font-medium text-sm md:text-base mb-1 text-white">
                         Avatar:
-                        <span class="text-xs">
-                            (Not required)
-                        </span>
                     </label>
                     <div class="relative">
                         <input
