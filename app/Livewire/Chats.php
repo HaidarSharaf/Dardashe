@@ -11,11 +11,10 @@ use Livewire\Component;
 class Chats extends Component
 {
     public User $user;
-    public $chats = [];
+
     public function mount()
     {
         $this->user = auth()->user();
-        $this->chats = $this->user->chatsList();
     }
 
     public function getLatestMessage($friendId)
@@ -77,7 +76,7 @@ class Chats extends Component
     public function render()
     {
         return view('livewire.chats', [
-            'chats' => $this->chats,
+            'chats' => $this->user->chatsList(),
         ]);
     }
 }
