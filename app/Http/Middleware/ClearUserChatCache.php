@@ -13,9 +13,24 @@ class ClearUserChatCache
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->check()) {
-            Cache::forget('user_in_chat_' . auth()->id());
+        if (!auth()->check()) {
+            return $next($request);
         }
+
+        if ($request->routeIs('chat')) {
+            return $next($request);
+        }
+
+        if ($request->header('X-Livewire')) {
+            return $next($request);
+        }
+
+        if ($request->ajax()) {
+            return $next($request);
+        }
+
+        Cache::forget('user_in_chat_' . auth()->id());
+
         return $next($request);
     }
 }
