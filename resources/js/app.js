@@ -5,3 +5,5 @@ import { Livewire, Alpine } from '../../vendor/livewire/livewire/dist/livewire.e
 window.Alpine = Alpine;
 
 Livewire.start();
+
+console.log(import.meta.env.VITE_REVERB_PORT)
