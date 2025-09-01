@@ -76,6 +76,8 @@ class Chats extends Component
 
     public function render()
     {
-        return view('livewire.chats');
+        return view('livewire.chats', [
+            'chats' => $this->chats,
+        ]);
     }
 }
