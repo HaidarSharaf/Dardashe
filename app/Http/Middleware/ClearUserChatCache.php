@@ -13,14 +13,9 @@ class ClearUserChatCache
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->routeIs('chat*')) {
-            return $next($request);
-        }
-
         if (auth()->check()) {
             Cache::forget('user_in_chat_' . auth()->id());
         }
-
         return $next($request);
     }
 }
