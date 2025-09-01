@@ -20,18 +20,13 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/forgot-password', ForgotPassword::class)->name('forgot-password');
     Route::get('/reset-password/{token}',ResetPassword::class)->name('password-reset');
 });
-
 Route::middleware(['auth'])->group(function () {
     Route::get('verify-email', VerifyEmail::class)->name('verify-email');
-    
-    Route::middleware('clear-user-chat-cache')->group(function () {
-        Route::get('/update-password', UpdatePassword::class)->name('update-password');
-        Route::get('/', NoChat::class)->name('home');
-        Route::get('/add-friends', AddFriends::class)->name('add-friends');
-        Route::get('/friends', Friends::class)->name('friends');
-        Route::get('/profile', Profile::class)->name('profile');
-    });
-    
+    Route::get('/update-password', UpdatePassword::class)->name('update-password');
+    Route::get('/', NoChat::class)->name('home');
+    Route::get('/add-friends', AddFriends::class)->name('add-friends');
+    Route::get('/friends', Friends::class)->name('friends');
+    Route::get('/profile', Profile::class)->name('profile');
     Route::get('/chat/{friend}', Chat::class)->name('chat')->can('view-chat', 'friend');
 });
 
