@@ -13,6 +13,7 @@
 
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @livewireStyles
 </head>
 <body
     class="bg-gradient-to-br p-0 m-0 from-gray-700 via-gray-400 to-blue-900 flex items-center lg:justify-center min-h-screen flex-col"
