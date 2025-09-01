@@ -6,4 +6,3 @@ window.Alpine = Alpine;
 
 Livewire.start();
 
-console.log(import.meta.env.VITE_REVERB_PORT)
