@@ -1,5 +1,6 @@
 <div
     x-data="{ showChats: false }"
+    
 >
     <div
         x-cloak
@@ -14,12 +15,13 @@
         x-bind:class="showChats ? 'translate-x-0' : '-translate-x-full'"
         class="bg-white flex flex-col shadow-2xl border-r border-gray-400
                fixed inset-y-0 left-0 flex-4/5 z-20 min-h-screen transform transition-transform lg:static lg:translate-x-0 lg:flex-1/3"
+        wire:poll.5s
     >
         <livewire:header />
 
         <div class="w-full z-40">
 
-            <div class="flex-1 overflow-y-auto" wire:poll.5s>
+            <div class="flex-1 overflow-y-auto">
 
                 @forelse($chats as $chat)
 
