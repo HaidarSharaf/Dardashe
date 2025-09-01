@@ -23,16 +23,15 @@ Route::middleware(['guest'])->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('verify-email', VerifyEmail::class)->name('verify-email');
-    Route::get('/update-password', UpdatePassword::class)->name('update-password');
-
-    Route::get('/', NoChat::class)->name('home');
-
-    Route::get('/add-friends', AddFriends::class)->name('add-friends');
-
-    Route::get('/friends', Friends::class)->name('friends');
-
-    Route::get('/profile', Profile::class)->name('profile');
-
+    
+    Route::middleware('clear-user-chat-cache')->group(function () {
+        Route::get('/update-password', UpdatePassword::class)->name('update-password');
+        Route::get('/', NoChat::class)->name('home');
+        Route::get('/add-friends', AddFriends::class)->name('add-friends');
+        Route::get('/friends', Friends::class)->name('friends');
+        Route::get('/profile', Profile::class)->name('profile');
+    });
+    
     Route::get('/chat/{friend}', Chat::class)->name('chat')->can('view-chat', 'friend');
 });
 
