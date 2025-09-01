@@ -35,8 +35,8 @@ return [
             'hostname' => env('REVERB_HOST'),
             'options' => [
                 'tls' => [
-                    'local_cert" => 'etc/nginx/ssl/server.crt',
-                    'local_pk" => 'etc/nginx/ssl/server.key',
+                    'local_cert' => 'etc/nginx/ssl/server.crt',
+                    'local_pk' => 'etc/nginx/ssl/server.key',
                     'verify_peer' => false
                 ],
             ],
