@@ -6,9 +6,10 @@ window.Pusher = Pusher;
 window.Echo = new Echo({
     broadcaster: 'reverb',
     key: import.meta.env.VITE_REVERB_APP_KEY,
-    wsHost: ws.dardashe.site,
-    wsPort: 8080,
-    wssPort: 8080,
+    wsHost: import.meta.env.VITE_REVERB_HOST,
+    wsPort: import.meta.env.VITE_REVERB_PORT,
+    wssPort: import.meta.env.VITE_REVERB_PORT,
     forceTLS: true,
+    disableStats: true,
     enabledTransports: ['ws', 'wss'],
 });
