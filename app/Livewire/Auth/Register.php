@@ -24,7 +24,7 @@ class Register extends AuthComponent
     public string $password = '';
     public string $password_confirmation = '';
 
-    public function register(): void
+    public function register()
     {
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -49,7 +49,8 @@ class Register extends AuthComponent
 
         Auth::login($user);
 
-        $this->redirect(route('home'), navigate: true);
+        return redirect()->route('home');
+    
     }
 
     public function render()
