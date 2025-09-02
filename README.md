@@ -32,7 +32,7 @@
 - ⚡ **Real-time Messaging**  
     Instant message delivery with Reverb WebSocket for seamless communication.
 
-- 🔍 **Advanced Job Search** - Filter by technology, experience level, location, and salary **Friends Search, Adding, and Accepting or Rejecting**  
+- 🔍 **Friends Search, Adding, and Accepting or Rejecting**  
     Search and add friends, and accept or reject friend requests.
     
 - 📎 **File Sharing**  
