@@ -29,7 +29,7 @@
 
 ## ✨ Key Features
 
-- ⚡ **Real-time Messaging**  
+- ⚡ **Real-time Messages**  
     Instant message delivery with Reverb WebSocket for seamless communication.
 
 - 🔍 **Friends Search, Adding, and Accepting or Rejecting**  
