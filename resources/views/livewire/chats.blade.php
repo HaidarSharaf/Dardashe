@@ -121,7 +121,7 @@
     </div>
 
     <button
-        class="fixed right-2 sm:top-2 top-4 z-20 rounded-full bg-sky-700 text-white p-4 cursor-pointer lg:hidden"
+        class="fixed right-2 sm:top-2 top-8 z-20 rounded-full bg-sky-700 text-white p-4 cursor-pointer lg:hidden"
         x-on:click="showChats = !showChats"
     >
         <svg x-show="showChats" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="md:size-5 sm:size-4 size-3" aria-hidden="true">
