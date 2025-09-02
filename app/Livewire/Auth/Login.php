@@ -23,7 +23,7 @@ class Login extends AuthComponent
 
     public bool $remember = false;
 
-    public function login(): void
+    public function login()
     {
         $this->validate();
 
